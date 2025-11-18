@@ -10,6 +10,12 @@
     "test": {
       "dependsOn": ["^test"]
     },
+    "format": {
+      "dependsOn": ["^format"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
     "dev": {
       "persistent": true,
       "cache": false
