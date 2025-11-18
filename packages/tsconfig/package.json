@@ -1,0 +1,16 @@
+{
+	"name": "@seisan/tsconfig",
+	"private": "true",
+	"type": "module",
+	"exports": {
+		"./app": "./src/app.tsconfig.json",
+		"./package": "./src/package.tsconfig.json"
+	},
+	"scripts": {
+		"format": "biome format --write",
+		"lint": "biome lint --write"
+	},
+	"devDependencies": {
+		"@seisan/biomejs": "workspace:*"
+	}
+}
