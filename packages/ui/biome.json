@@ -1,0 +1,16 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.6/schema.json",
+	"extends": ["@seisan/biomejs/biome"],
+	"root": false,
+	"overrides": [
+		{
+			"includes": ["src/styles/globals.css"],
+			"linter": {
+				"enabled": false
+			},
+			"formatter": {
+				"enabled": false
+			}
+		}
+	]
+}
