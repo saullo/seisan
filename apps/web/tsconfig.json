@@ -1,4 +1,10 @@
 {
 	"$schema": "https://www.schemastore.org/tsconfig",
-	"extends": ["@seisan/tsconfig/app"]
+	"extends": ["@seisan/tsconfig/app"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	}
 }

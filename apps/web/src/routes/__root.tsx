@@ -1,3 +1,4 @@
+import globalsCss from "@seisan/ui/globals.css?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
@@ -21,6 +22,12 @@ export const Route = createRootRouteWithContext<{
 			},
 			{
 				title: "Seisan",
+			},
+		],
+		links: [
+			{
+				rel: "stylesheet",
+				href: globalsCss,
 			},
 		],
 	}),
