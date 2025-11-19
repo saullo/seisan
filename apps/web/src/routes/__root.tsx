@@ -41,7 +41,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<head>
 				<HeadContent />
 			</head>
-			<body>
+			<body className="font-sans antialiased">
 				{children}
 				<TanStackDevtools
 					config={{

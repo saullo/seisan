@@ -9,27 +9,76 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as primaryRouteRouteImport } from './routes/(primary)/route'
+import { Route as primaryhomeIndexRouteImport } from './routes/(primary)/(home)/index'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+const primaryRouteRoute = primaryRouteRouteImport.update({
+  id: '/(primary)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const primaryhomeIndexRoute = primaryhomeIndexRouteImport.update({
+  id: '/(home)/',
+  path: '/',
+  getParentRoute: () => primaryRouteRoute,
+} as any)
+
+export interface FileRoutesByFullPath {
+  '/': typeof primaryhomeIndexRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof primaryhomeIndexRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/(primary)': typeof primaryRouteRouteWithChildren
+  '/(primary)/(home)/': typeof primaryhomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to: '/'
+  id: '__root__' | '/(primary)' | '/(primary)/(home)/'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  primaryRouteRoute: typeof primaryRouteRouteWithChildren
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/(primary)': {
+      id: '/(primary)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof primaryRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(primary)/(home)/': {
+      id: '/(primary)/(home)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof primaryhomeIndexRouteImport
+      parentRoute: typeof primaryRouteRoute
+    }
+  }
+}
+
+interface primaryRouteRouteChildren {
+  primaryhomeIndexRoute: typeof primaryhomeIndexRoute
+}
+
+const primaryRouteRouteChildren: primaryRouteRouteChildren = {
+  primaryhomeIndexRoute: primaryhomeIndexRoute,
+}
+
+const primaryRouteRouteWithChildren = primaryRouteRoute._addFileChildren(
+  primaryRouteRouteChildren,
+)
+
+const rootRouteChildren: RootRouteChildren = {
+  primaryRouteRoute: primaryRouteRouteWithChildren,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()

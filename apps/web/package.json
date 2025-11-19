@@ -20,6 +20,8 @@
 		"@tanstack/react-router-ssr-query": "^1.136.10",
 		"@tanstack/react-start": "^1.132.0",
 		"@tanstack/router-plugin": "^1.132.0",
+		"@unpic/react": "^1.0.1",
+		"embla-carousel-autoplay": "^8.6.0",
 		"lucide-react": "^0.544.0",
 		"nitro": "latest",
 		"react": "^19.2.0",
@@ -28,6 +30,7 @@
 		"vite-tsconfig-paths": "^5.1.4"
 	},
 	"devDependencies": {
+		"@faker-js/faker": "^10.1.0",
 		"@seisan/biomejs": "workspace:*",
 		"@seisan/tsconfig": "workspace:*",
 		"@tanstack/devtools-vite": "^0.3.11",
